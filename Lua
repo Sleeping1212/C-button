@@ -1,0 +1,41 @@
+getgenv().keytoclick = "C"
+
+-- Create a ScreenGui to hold the button
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create a TextButton
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 100, 0, 50) -- Size of the button
+button.Position = UDim2.new(0, 100, 0, 100) -- Position on the screen
+button.Text = "Off"
+button.BackgroundColor3 = Color3.new(0, 0, 0) -- Black color
+button.TextColor3 = Color3.new(1, 1, 1) -- White text color for visibility
+button.Parent = screenGui
+
+-- Make the button draggable
+button.Draggable = true
+
+-- Set button toggle state
+local isOn = false
+
+button.MouseButton1Click:Connect(function()
+    isOn = not isOn
+    if isOn then
+        button.Text = "On"
+        -- Simulate the key press when button is "On"
+        local vim = game:service("VirtualInputManager")
+        vim:SendKeyEvent(true, keytoclick, false, game)
+    else
+        button.Text = "Off"
+    end
+end)
+
+-- Notification script
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/PsycoWrld/PsycoWorldWorks/main/Scripts/AkaliNotif.lua"))()
+local Notify = AkaliNotif.Notify
+Notify({
+    Description = "Notification";
+    Title = "Niggers";
+    Duration = 10;
+})
